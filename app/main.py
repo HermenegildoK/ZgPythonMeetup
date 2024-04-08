@@ -2,8 +2,8 @@
 # [Protocol](https://typing.readthedocs.io/en/latest/spec/protocol.html) and
 # [Abstract Base Classes](https://docs.python.org/3/library/abc.html#module-abc)
 
-from app.abc_examples.example_1 import example_1 as e_11, example_2 as e_12, example_3 as e_13
-from app.abc_examples.examples_2 import example_1 as e_21, example_2 as e_22
+from abc_examples.example_1 import example_1 as e_11, example_2 as e_12, example_3 as e_13
+from abc_examples.examples_2 import example_1 as e_21, example_2 as e_22
 
 if __name__ == '__main__':
     print("Starting!")

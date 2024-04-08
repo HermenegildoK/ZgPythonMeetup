@@ -40,5 +40,6 @@ def example_2():
 
 if __name__ == '__main__':
     print("Starting!")
-    # example_1()
-    example_2()
+    example_1()
+    # uncomment to see how it fails
+    # example_2()

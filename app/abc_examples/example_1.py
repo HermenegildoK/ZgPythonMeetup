@@ -50,5 +50,6 @@ def example_3():
 
 if __name__ == '__main__':
     example_1()
-    example_2()
+    # uncomment to see how it fails
+    # example_2()
     example_3()

@@ -1,9 +1,11 @@
+from abc import abstractmethod
 from typing import Protocol, runtime_checkable, TypeVar
 
 
 @runtime_checkable
 class SupportsRead(Protocol):
 
+    @abstractmethod
     def read(self) -> str:
         ...
 
@@ -57,8 +59,8 @@ class MockCallerExplicit(SupportsCall):
 
 class FakeCall:
 
-    def call(self):
-        return "Fake!"
+    def call(self) -> str:
+        return "Fake"
 
 
 def call_something(caller: SupportsCall) -> str:
@@ -79,7 +81,9 @@ def call_and_print(caller: S) -> None:
 if __name__ == '__main__':
     # this fails mypy check:
     # error: Argument "caller" to "call_something" has incompatible type "object"; expected "SupportsCall"  [arg-type]
-    for caller_implementation in [MockCallerExplicit(), MockCallerImplicit()]:
+    explicit_caller = MockCallerExplicit()
+    implicit_caller = MockCallerImplicit()
+    for caller_implementation in [explicit_caller, implicit_caller]:
         print(call_something(caller=caller_implementation))
         call_and_print(caller=caller_implementation)
 
@@ -89,5 +93,5 @@ if __name__ == '__main__':
         call_and_print(caller=caller_implementation)
 
     # this fails mypy and raises runtime exception
-    # call_something(caller=FakeCall())
+    # print(call_something(caller=FakeCall()))
     # call_and_print(caller=FakeCall())
